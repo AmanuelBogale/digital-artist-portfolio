@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Imaging Specialist & Visual AI Specialist Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slateDark: '#0B0F17',
+                        cardDark: '#131A26',
+                        accentCyan: '#06B6D4',
+                        accentViolet: '#8B5CF6',
+                        accentPink: '#EC4899',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0F17;
+            color: #E2E8F0;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-panel {
+            background: rgba(19, 26, 38, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-card {
+            background: rgba(22, 30, 46, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.15);
+        }
+
+        /* Custom Neon Glow Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #38BDF8 0%, #8B5CF6 50%, #EC4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06B6D4;
+        }
+
+        /* Before/After Image Comparison Slider */
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            user-select: none;
+        }
+
+        .comparison-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .img-before {
+            z-index: 2;
+            width: 50%;
+            overflow: hidden;
+            border-right: 2px solid #06B6D4;
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: #06B6D4;
+            z-index: 10;
+            cursor: ew-resize;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.8);
+        }
+
+        .slider-handle-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 36px;
+            height: 36px;
+            background-color: #06B6D4;
+            color: #0B0F17;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.6);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-cyan-500 to-violet-600 flex items-center justify-center text-slate-900 font-extrabold text-xl shadow-lg shadow-cyan-500/20">
+                    DI
+                </div>
+                <div>
+                    <span class="text-lg font-bold tracking-tight text-white block">AURA <span class="text-cyan-400">VISION</span></span>
+                    <span class="text-xs text-slate-400 block -mt-1 font-mono">DIGITAL IMAGING & AI</span>
+                </div>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
+                <a href="#gallery" class="hover:text-cyan-400 transition-colors">Portfolio</a>
+                <a href="#comparison" class="hover:text-cyan-400 transition-colors">Image Processing</a>
+                <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills Matrix</a>
+                <a href="#contact" class="px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-violet-600 text-slate-950 font-semibold hover:opacity-90 transition-opacity shadow-md shadow-cyan-500/10">Contact</a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menuBtn" class="md:hidden text-slate-300 hover:text-white text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden glass-panel border-t border-slate-800 px-6 py-4 flex flex-col space-y-4">
+            <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
+            <a href="#gallery" class="hover:text-cyan-400 transition-colors">Portfolio</a>
+            <a href="#comparison" class="hover:text-cyan-400 transition-colors">Image Processing</a>
+            <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills Matrix</a>
+            <a href="#contact" class="text-cyan-400 font-semibold">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-20 md:pt-40 md:pb-28 relative overflow-hidden">
+        <!-- Background Ambient Glow -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-cyan-500/10 via-violet-500/10 to-pink-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel text-xs font-mono text-cyan-300 mb-6 border border-cyan-500/20">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                    Available for Multimodal AI & Digital Asset Evaluation
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                    Digital Imaging Specialist & <span class="text-gradient">Visual AI Creator</span>
+                </h1>
+                <p class="text-slate-300 text-lg sm:text-xl leading-relaxed mb-8">
+                    Bridging fine art precision with computational imaging. Expertise in 2D/3D visual asset creation, PBR texturing, optical forgery detection, image enhancement, and multimodal AI visual quality benchmarking.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#gallery" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 text-slate-950 font-bold hover:shadow-lg hover:shadow-cyan-500/25 transition-all flex items-center gap-2">
+                        View Interactive Works <i class="fa-solid fa-arrow-down text-xs"></i>
+                    </a>
+                    <a href="#comparison" class="px-6 py-3.5 rounded-xl glass-panel text-white font-semibold hover:border-cyan-500/50 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-cyan-400"></i> Interactive Retouch Tool
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow space-y-24">
+
+        <!-- Experience & About Section -->
+        <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-2xl p-8 sm:p-12 relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3">
+                            <i class="fa-solid fa-eye text-cyan-400"></i> Expert Visual Inspection & Production
+                        </h2>
+                        <p class="text-slate-300 leading-relaxed">
+                            With over 4+ years of cross-functional experience spanning 3D surface modeling, photorealistic rendering, digital image editing, and computer vision preprocessing pipelines, I ensure peak visual quality across digital media ecosystems.
+                        </p>
+                        <p class="text-slate-300 leading-relaxed">
+                            My workflow integrates traditional artistic design principles—such as composition, color theory, lighting setup, and material properties—with modern programmatic verification, automated batch image enhancement, and optical artifact analysis.
+                        </p>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-800">
+                            <div>
+                                <span class="block text-2xl font-bold text-cyan-400 font-mono">100%</span>
+                                <span class="text-xs text-slate-400">Visual QA Precision</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl font-bold text-violet-400 font-mono">4K+</span>
+                                <span class="text-xs text-slate-400">PBR Textures Rendered</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl font-bold text-pink-400 font-mono">Multi-Modal</span>
+                                <span class="text-xs text-slate-400">AI Evaluation Ready</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-sm aspect-square rounded-2xl bg-gradient-to-tr from-cyan-500/20 to-violet-500/20 p-2 border border-slate-700/50">
+                            <div class="w-full h-full rounded-xl bg-slate-900 overflow-hidden relative flex flex-col justify-center items-center p-6 text-center">
+                                <i class="fa-solid fa-layer-group text-6xl text-cyan-400 mb-4 opacity-80"></i>
+                                <span class="text-lg font-bold text-white mb-1">Asset Quality & Analysis</span>
+                                <span class="text-xs text-slate-400">3D Meshes, PBR Maps, Computer Vision Filtering & Color Grading</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filterable Portfolio Gallery -->
+        <section id="gallery" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-white">Portfolio Gallery</h2>
+                    <p class="text-slate-400 text-sm mt-1">Explore 2D/3D artwork, image processing, and AI visual assets</p>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="flex flex-wrap gap-2" id="filterContainer">
+                    <button class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold glass-panel text-cyan-400 border-cyan-500/40 active-filter" data-filter="all">
+                        All Works
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold glass-panel text-slate-300 hover:text-white" data-filter="art3d">
+                        2D/3D Art & Textures
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold glass-panel text-slate-300 hover:text-white" data-filter="processing">
+                        Image Processing
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold glass-panel text-slate-300 hover:text-white" data-filter="multimodal">
+                        AI & Multimodal Assets
+                    </button>
+                </div>
+            </div>
+
+            <!-- Gallery Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
+
+                <!-- Card 1 -->
+                <div class="glass-card rounded-xl overflow-hidden gallery-item cursor-pointer" data-category="art3d" onclick="openModal(1)">
+                    <div class="h-52 bg-slate-800 relative overflow-hidden group">
+                        <svg class="w-full h-full object-cover text-slate-700 bg-slate-900" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="400" height="250" fill="#0F172A"/>
+                            <polygon points="200,40 320,200 80,200" fill="url(#grad1)" opacity="0.8"/>
+                            <circle cx="200" cy="120" r="40" fill="url(#grad2)"/>
+                            <defs>
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#06B6D4"/>
+                                    <stop offset="100%" stop-color="#8B5CF6"/>
+                                </linearGradient>
+                                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#EC4899"/>
+                                    <stop offset="100%" stop-color="#38BDF8"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-4 py-2 rounded-lg glass-panel text-xs text-cyan-300 font-semibold border border-cyan-500/30">View Case Study</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs font-mono text-cyan-400 block mb-1">2D/3D Art & Textures</span>
+                        <h3 class="text-lg font-bold text-white mb-2">Stylized Sci-Fi PBR Material Library</h3>
+                        <p class="text-slate-400 text-xs line-clamp-2 mb-4">Procedural texture maps generated in Substance Painter and Blender with custom roughness, metallic, and displacement channels.</p>
+                        <div class="flex items-center gap-2 text-xs text-slate-500 font-mono">
+                            <span>Blender</span> • <span>Substance Painter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card rounded-xl overflow-hidden gallery-item cursor-pointer" data-category="processing" onclick="openModal(2)">
+                    <div class="h-52 bg-slate-800 relative overflow-hidden group">
+                        <svg class="w-full h-full object-cover text-slate-700 bg-slate-900" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="400" height="250" fill="#0B132B"/>
+                            <path d="M0 125 Q 100 50, 200 125 T 400 125" stroke="#06B6D4" stroke-width="4" fill="none"/>
+                            <path d="M0 140 Q 100 200, 200 140 T 400 140" stroke="#8B5CF6" stroke-width="3" fill="none"/>
+                            <circle cx="200" cy="125" r="6" fill="#06B6D4"/>
+                        </svg>
+                        <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-4 py-2 rounded-lg glass-panel text-xs text-cyan-300 font-semibold border border-cyan-500/30">View Case Study</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs font-mono text-violet-400 block mb-1">Digital Image Processing</span>
+                        <h3 class="text-lg font-bold text-white mb-2">Automated Noise Reduction & Edge Pipeline</h3>
+                        <p class="text-slate-400 text-xs line-clamp-2 mb-4">OpenCV computational pipeline to remove sensor noise and isolate high-frequency feature borders without blur artifacting.</p>
+                        <div class="flex items-center gap-2 text-xs text-slate-500 font-mono">
+                            <span>OpenCV</span> • <span>Python</span> • <span>NumPy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card rounded-xl overflow-hidden gallery-item cursor-pointer" data-category="multimodal" onclick="openModal(3)">
+                    <div class="h-52 bg-slate-800 relative overflow-hidden group">
+                        <svg class="w-full h-full object-cover text-slate-700 bg-slate-900" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="400" height="250" fill="#180E29"/>
+                            <rect x="50" y="40" width="130" height="170" rx="10" fill="#2A1B40" stroke="#8B5CF6" stroke-width="2"/>
+                            <rect x="220" y="40" width="130" height="170" rx="10" fill="#2A1B40" stroke="#EC4899" stroke-width="2"/>
+                            <circle cx="115" cy="100" r="25" fill="#06B6D4"/>
+                            <path d="M90 160 L140 160" stroke="#8B5CF6" stroke-width="4"/>
+                        </svg>
+                        <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-4 py-2 rounded-lg glass-panel text-xs text-cyan-300 font-semibold border border-cyan-500/30">View Case Study</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs font-mono text-pink-400 block mb-1">AI & Multimodal Assets</span>
+                        <h3 class="text-lg font-bold text-white mb-2">Optical Forgery & Artifact Benchmark</h3>
+                        <p class="text-slate-400 text-xs line-clamp-2 mb-4">Dataset evaluation suite identifying JPEG compression anomalies, copy-move cloning, and diffusion model visual hallucinations.</p>
+                        <div class="flex items-center gap-2 text-xs text-slate-500 font-mono">
+                            <span>PyTorch</span> • <span>Photoshop</span> • <span>Vision QA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-card rounded-xl overflow-hidden gallery-item cursor-pointer" data-category="art3d" onclick="openModal(4)">
+                    <div class="h-52 bg-slate-800 relative overflow-hidden group">
+                        <svg class="w-full h-full object-cover text-slate-700 bg-slate-900" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="400" height="250" fill="#0F172A"/>
+                            <circle cx="200" cy="125" r="70" fill="none" stroke="#06B6D4" stroke-width="8" stroke-dasharray="10 5"/>
+                            <circle cx="200" cy="125" r="40" fill="#8B5CF6"/>
+                        </svg>
+                        <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-4 py-2 rounded-lg glass-panel text-xs text-cyan-300 font-semibold border border-cyan-500/30">View Case Study</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs font-mono text-cyan-400 block mb-1">2D/3D Art & Textures</span>
+                        <h3 class="text-lg font-bold text-white mb-2">3D Studio Lighting & Shadow Composition</h3>
+                        <p class="text-slate-400 text-xs line-clamp-2 mb-4">3-point studio lighting configurations and caustic raytracing setups for product showcase and hero asset rendering.</p>
+                        <div class="flex items-center gap-2 text-xs text-slate-500 font-mono">
+                            <span>Blender Cycles</span> • <span>Photoshop</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="glass-card rounded-xl overflow-hidden gallery-item cursor-pointer" data-category="processing" onclick="openModal(5)">
+                    <div class="h-52 bg-slate-800 relative overflow-hidden group">
+                        <svg class="w-full h-full object-cover text-slate-700 bg-slate-900" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="400" height="250" fill="#0B132B"/>
+                            <rect x="80" y="50" width="240" height="150" fill="none" stroke="#EC4899" stroke-width="2"/>
+                            <line x1="80" y1="50" x2="320" y2="200" stroke="#06B6D4" stroke-width="2"/>
+                            <line x1="320" y1="50" x2="80" y2="200" stroke="#8B5CF6" stroke-width="2"/>
+                        </svg>
+                        <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-4 py-2 rounded-lg glass-panel text-xs text-cyan-300 font-semibold border border-cyan-500/30">View Case Study</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs font-mono text-violet-400 block mb-1">Digital Image Processing</span>
+                        <h3 class="text-lg font-bold text-white mb-2">HDR Dynamic Range & Color Calibration</h3>
+                        <p class="text-slate-400 text-xs line-clamp-2 mb-4">Multi-exposure bracket stitching and color grading pipeline calibrated for high-fidelity cross-platform display displays.</p>
+                        <div class="flex items-center gap-2 text-xs text-slate-500 font-mono">
+                            <span>Lightroom</span> • <span>OpenCV</span> • <span>Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="glass-card rounded-xl overflow-hidden gallery-item cursor-pointer" data-category="multimodal" onclick="openModal(6)">
+                    <div class="h-52 bg-slate-800 relative overflow-hidden group">
+                        <svg class="w-full h-full object-cover text-slate-700 bg-slate-900" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="400" height="250" fill="#180E29"/>
+                            <polygon points="100,50 300,50 350,200 50,200" fill="none" stroke="#06B6D4" stroke-width="3"/>
+                            <circle cx="200" cy="125" r="30" fill="#EC4899"/>
+                        </svg>
+                        <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-4 py-2 rounded-lg glass-panel text-xs text-cyan-300 font-semibold border border-cyan-500/30">View Case Study</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs font-mono text-pink-400 block mb-1">AI & Multimodal Assets</span>
+                        <h3 class="text-lg font-bold text-white mb-2">Vector UI Asset Synthesis & Iconography</h3>
+                        <p class="text-slate-400 text-xs line-clamp-2 mb-4">Scalable vector graphics and resolution-independent UI asset kits designed for cross-device mobile and desktop environments.</p>
+                        <div class="flex items-center gap-2 text-xs text-slate-500 font-mono">
+                            <span>Figma</span> • <span>Illustrator</span> • <span>SVG</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Interactive Image Comparison (Before/After Slider) -->
+        <section id="comparison" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-2xl p-6 sm:p-10">
+                <div class="max-w-2xl mb-8">
+                    <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest block mb-2">Interactive Demonstration</span>
+                    <h2 class="text-3xl font-extrabold text-white">Digital Retouching & Enhancements</h2>
+                    <p class="text-slate-300 text-sm mt-2">Drag the interactive slider left and right to inspect raw visual noise removal, contrast expansion, color correction, and sharpness adjustments.</p>
+                </div>
+
+                <!-- Comparison Slider Box -->
+                <div class="comparison-slider border border-slate-700/60 shadow-2xl" id="sliderContainer">
+                    <!-- After Image (Base) -->
+                    <svg class="w-full h-full object-cover bg-slate-900" viewBox="0 0 800 400" fill="none">
+                        <!-- Vivid Crisp Post-Process Mock -->
+                        <rect width="800" height="400" fill="#0F172A"/>
+                        <circle cx="400" cy="200" r="120" fill="url(#postGrad)" />
+                        <path d="M150 350 L350 120 L550 350 Z" fill="#06B6D4" opacity="0.8"/>
+                        <path d="M300 350 L500 160 L700 350 Z" fill="#8B5CF6" opacity="0.8"/>
+                        <text x="40" y="60" fill="#06B6D4" font-size="20" font-weight="bold" font-family="sans-serif">AFTER: Enhanced & Color Graded (100% Quality)</text>
+                        <defs>
+                            <radialGradient id="postGrad" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#EC4899"/>
+                                <stop offset="100%" stop-color="#38BDF8"/>
+                            </radialGradient>
+                        </defs>
+                    </svg>
+
+                    <!-- Before Image (Overlaid & Clipped) -->
+                    <div class="img-before" id="beforeImage">
+                        <svg class="w-full h-full object-cover bg-slate-950" viewBox="0 0 800 400" fill="none" style="width: 800px; max-width: none;">
+                            <!-- Noisy Dull Pre-Process Mock -->
+                            <rect width="800" height="400" fill="#0B0F17"/>
+                            <circle cx="400" cy="200" r="120" fill="#475569" opacity="0.5"/>
+                            <path d="M150 350 L350 120 L550 350 Z" fill="#334155" opacity="0.6"/>
+                            <path d="M300 350 L500 160 L700 350 Z" fill="#1E293B" opacity="0.6"/>
+                            <!-- Simulated Noise Dots -->
+                            <circle cx="200" cy="100" r="2" fill="#94A3B8"/>
+                            <circle cx="250" cy="220" r="3" fill="#64748B"/>
+                            <circle cx="550" cy="180" r="2" fill="#94A3B8"/>
+                            <circle cx="620" cy="90" r="3" fill="#64748B"/>
+                            <text x="40" y="60" fill="#94A3B8" font-size="20" font-weight="bold" font-family="sans-serif">BEFORE: Raw Input (Noise & Flat Tone)</text>
+                        </svg>
+                    </div>
+
+                    <!-- Slider Drag Handle -->
+                    <div class="slider-handle" id="sliderHandle">
+                        <div class="slider-handle-button">
+                            <i class="fa-solid fa-arrows-left-right text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Skills & Tools Matrix -->
+        <section id="skills" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest block mb-2">Technical Proficiency</span>
+                <h2 class="text-3xl font-extrabold text-white">Skills & Software Matrix</h2>
+                <p class="text-slate-400 text-sm mt-2">Comprehensive breakdown of software toolsets and core competencies in digital media and image quality evaluation.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Software & Tools -->
+                <div class="glass-panel rounded-xl p-6 sm:p-8 space-y-6">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-3">
+                        <i class="fa-solid fa-laptop-code text-cyan-400"></i> Primary Toolsets & DAWs
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-200">Adobe Photoshop & Illustrator</span>
+                                <span class="text-cyan-400 font-mono">98%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 98%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-200">Blender & Substance Painter</span>
+                                <span class="text-cyan-400 font-mono">92%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-cyan-500 to-violet-500 h-2 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-200">OpenCV & Python Image Pipelines</span>
+                                <span class="text-cyan-400 font-mono">90%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-violet-500 to-pink-500 h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-200">Figma & UI Asset Systems</span>
+                                <span class="text-cyan-400 font-mono">95%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-pink-500 to-cyan-500 h-2 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Core Competencies -->
+                <div class="glass-panel rounded-xl p-6 sm:p-8 space-y-6">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-violet-400"></i> Core Competencies
+                    </h3>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center gap-3">
+                            <i class="fa-solid fa-cube text-cyan-400"></i>
+                            <span class="text-xs text-slate-200 font-medium">2D & 3D Asset Creation</span>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center gap-3">
+                            <i class="fa-solid fa-palette text-violet-400"></i>
+                            <span class="text-xs text-slate-200 font-medium">PBR Texturing & UV Mapping</span>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center gap-3">
+                            <i class="fa-solid fa-lightbulb text-pink-400"></i>
+                            <span class="text-xs text-slate-200 font-medium">3D Lighting & Composition</span>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center gap-3">
+                            <i class="fa-solid fa-shield-cat text-cyan-400"></i>
+                            <span class="text-xs text-slate-200 font-medium">Optical Forgery Analysis</span>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center gap-3">
+                            <i class="fa-solid fa-[#06B6D4] fa-sliders text-violet-400"></i>
+                            <span class="text-xs text-slate-200 font-medium">Color Grading & HDR</span>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center gap-3">
+                            <i class="fa-solid fa-robot text-pink-400"></i>
+                            <span class="text-xs text-slate-200 font-medium">Multimodal AI Quality QA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+            <div class="glass-panel rounded-2xl p-8 sm:p-12 text-center relative overflow-hidden border border-cyan-500/20">
+                <h2 class="text-3xl font-extrabold text-white mb-4">Get In Touch</h2>
+                <p class="text-slate-300 text-sm max-w-lg mx-auto mb-8">
+                    Interested in collaborating on digital asset creation, multimodal AI evaluation, or image processing pipelines?
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="mailto:contact@auravision.dev" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 text-slate-950 font-bold hover:shadow-lg transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-envelope"></i> Send Email Message
+                    </a>
+                    <button onclick="copyPortfolioLink()" class="px-6 py-3 rounded-xl glass-panel text-white font-semibold hover:border-cyan-500/50 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-copy text-cyan-400"></i> Copy Portfolio Link
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal for Detailed Case Studies -->
+    <div id="modalOverlay" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-panel max-w-2xl w-full rounded-2xl p-6 sm:p-8 relative border border-slate-700 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <span id="modalCategory" class="text-xs font-mono text-cyan-400 uppercase tracking-widest block mb-1">Category</span>
+            <h3 id="modalTitle" class="text-2xl font-bold text-white mb-4">Project Title</h3>
+            
+            <div class="space-y-4 text-slate-300 text-sm">
+                <div>
+                    <h4 class="font-bold text-white text-xs uppercase text-slate-400 mb-1">Challenge Solved:</h4>
+                    <p id="modalChallenge">Challenge details go here...</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white text-xs uppercase text-slate-400 mb-1">Visual Workflow & Tools:</h4>
+                    <p id="modalWorkflow">Workflow details go here...</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white text-xs uppercase text-slate-400 mb-1">Impact & Quality Verification:</h4>
+                    <p id="modalImpact">Impact details go here...</p>
+                </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center">
+                <span id="modalTools" class="text-xs font-mono text-slate-400">Tools: Blender, Photoshop</span>
+                <button onclick="closeModal()" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="glass-panel border-t border-slate-800/80 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
+            <p>© 2026 Aura Vision Portfolio. Crafted for Digital Imaging Specialists & Visual AI Evaluation.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Gallery Filter Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active classes
+                filterBtns.forEach(b => {
+                    b.classList.remove('text-cyan-400', 'border-cyan-500/40', 'active-filter');
+                    b.classList.add('text-slate-300');
+                });
+                
+                // Add active state
+                btn.classList.add('text-cyan-400', 'border-cyan-500/40', 'active-filter');
+                btn.classList.remove('text-slate-300');
+
+                const filter = btn.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Modal Project Data
+        const modalData = {
+            1: {
+                category: "2D/3D Art & Textures",
+                title: "Stylized Sci-Fi PBR Material Library",
+                challenge: "Designing high-detail 3D surface material maps that maintain tactile realism under direct raytraced lighting without causing texture stretching or high memory overhead.",
+                workflow: "Created procedural nodes in Substance Painter for metallic roughness maps, normal height maps, and ambient occlusion. Rendered test meshes in Blender Cycles to verify shading accuracy across multiple angles.",
+                impact: "Delivered 15 production-ready 4K texture packages optimized for real-time and cinematic renders.",
+                tools: "Tools: Blender, Substance Painter, Photoshop"
+            },
+            2: {
+                category: "Digital Image Processing",
+                title: "Automated Noise Reduction & Edge Pipeline",
+                challenge: "Eliminating digital sensor noise and grain artifacts from low-light photographic renders while retaining crisp geometric edges and subtle gradients.",
+                workflow: "Built a Python-based OpenCV pipeline utilizing Bilateral Filtering and Canny Edge Detection to selectively apply frequency smoothing across high-noise color bands.",
+                impact: "Reduced visual image artifacting by over 80% without degrading sharp foreground features.",
+                tools: "Tools: OpenCV, Python, NumPy"
+            },
+            3: {
+                category: "AI & Multimodal Assets",
+                title: "Optical Forgery & Artifact Benchmark",
+                challenge: "Evaluating synthetic images generated by multimodal diffusion models to detect subtle AI hallucinations, misaligned perspective vectors, and clone stamp artifacts.",
+                workflow: "Applied Error Level Analysis (ELA) and Fourier transform spectral analysis to visually highlight manipulated pixels and compression discrepancies.",
+                impact: "Provided standardized quality assurance benchmarks for training multimodal vision model outputs.",
+                tools: "Tools: PyTorch, Photoshop, Vision QA"
+            },
+            4: {
+                category: "2D/3D Art & Textures",
+                title: "3D Studio Lighting & Shadow Composition",
+                challenge: "Achieving accurate caustics, soft shadow attenuation, and realistic studio bounce light for complex metallic and transparent geometry.",
+                workflow: "Constructed custom HDRI environments, three-point spot configurations, and light-blocking flags inside Blender Cycles.",
+                impact: "Created photorealistic hero renders for commercial digital asset showcases.",
+                tools: "Tools: Blender Cycles, Photoshop"
+            },
+            5: {
+                category: "Digital Image Processing",
+                title: "HDR Dynamic Range & Color Calibration",
+                challenge: "Correcting severe blown-out highlights and deep shadow detail loss across multi-exposure raw image captures.",
+                workflow: "Executed tone mapping algorithms and linear-to-sRGB color space conversions to balance dynamic range seamlessly.",
+                impact: "Achieved ultra-wide dynamic range display assets matching print-quality standards.",
+                tools: "Tools: Lightroom, OpenCV, Python"
+            },
+            6: {
+                category: "AI & Multimodal Assets",
+                title: "Vector UI Asset Synthesis & Iconography",
+                challenge: "Creating resolution-independent vector icons and UI components optimized for multi-device web display.",
+                workflow: "Designed clean vector node paths in Figma and Adobe Illustrator, exporting clean minified SVG code structures.",
+                impact: "Engineered scalable UI asset library used across web application designs.",
+                tools: "Tools: Figma, Adobe Illustrator, SVG"
+            }
+        };
+
+        function openModal(id) {
+            const data = modalData[id];
+            if (!data) return;
+
+            document.getElementById('modalCategory').innerText = data.category;
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalChallenge').innerText = data.challenge;
+            document.getElementById('modalWorkflow').innerText = data.workflow;
+            document.getElementById('modalImpact').innerText = data.impact;
+            document.getElementById('modalTools').innerText = data.tools;
+
+            document.getElementById('modalOverlay').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.add('hidden');
+        }
+
+        // Before/After Interactive Comparison Slider Logic
+        const container = document.getElementById('sliderContainer');
+        const beforeImage = document.getElementById('beforeImage');
+        const sliderHandle = document.getElementById('sliderHandle');
+        let isDragging = false;
+
+        function updateSlider(x) {
+            const rect = container.getBoundingClientRect();
+            let position = x - rect.left;
+            
+            if (position < 0) position = 0;
+            if (position > rect.width) position = rect.width;
+
+            const percentage = (position / rect.width) * 100;
+            
+            beforeImage.style.width = percentage + '%';
+            sliderHandle.style.left = percentage + '%';
+        }
+
+        sliderHandle.addEventListener('mousedown', () => isDragging = true);
+        window.addEventListener('mouseup', () => isDragging = false);
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            updateSlider(e.clientX);
+        });
+
+        // Touch support for mobile devices
+        sliderHandle.addEventListener('touchstart', () => isDragging = true);
+        window.addEventListener('touchend', () => isDragging = false);
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            updateSlider(e.touches[0].clientX);
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Clipboard Helper Function
+        function copyPortfolioLink() {
+            const tempInput = document.createElement('input');
+            tempInput.value = window.location.href;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            // Simple notification indicator
+            const btn = event.currentTarget;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check text-green-400"></i> Copied!';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
